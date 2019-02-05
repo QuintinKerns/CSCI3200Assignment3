@@ -11,9 +11,6 @@ public class MySingleLinkedList<E> {
 	
 	//My Swap
 	public void swap(int index) {
-//		System.out.println("Current Count: " + currentCount);
-        Node prev = null, curr = start;
-        
         // Special Case: End if start.next is null or start is null
         if (start.next == null || start == null) return;
         
@@ -21,20 +18,15 @@ public class MySingleLinkedList<E> {
         if (index >= currentCount) return;
         
         // Cycle through to index
-        for (int i = 0; i < index + 1; i++) 
-        { 
-        	System.out.println("Index: " + i);
-        	prev = curr; 
-            curr = curr.next; 
-        }
- 
-        // Swap pointers 
-        Node after = curr.next;
-        System.out.println("After: " + after);
-        curr.next = prev.next;
-        System.out.println("Curr.next: " + curr.next);
-        prev.next = after; 
-        System.out.println("Prev.next: " + prev.next);
+        Node current = start;
+		for(int i = 0; i < index; i++)
+		{
+			current = current.next;
+		}
+		Node after = current.next;
+		current.next = current.next.next;
+		after.next = current;
+		current.next = after.next.next;
 	}
 	
 	public void printList()

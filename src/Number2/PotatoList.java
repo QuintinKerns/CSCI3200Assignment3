@@ -1,12 +1,22 @@
 package Number2;
 
-public class PotatoList<E> {
+public class PotatoList<Integer> {
 	private Node start;
 	int currentCount;
-	public PotatoList()
+	public PotatoList(int people, int moves)
 	{
 		start = null;
 		currentCount = 0;
+		for (int i = 0; i < people; i++) {
+			this.add(i);
+		}
+		this.linkLast();
+		
+		// Game starts
+		for (int i = 0; i < people; i++){
+			this.pass(moves);
+		}
+		
 	}
 	
 	public void linkLast()
@@ -16,20 +26,21 @@ public class PotatoList<E> {
 	}
 	
 	void pass(int moves) {
-		this.delete(moves);
-		start = this.get(moves);
+		this.delete(moves); // Delete at index moves
+		start = this.get(moves); // Start at new moves index
+		this.get(moves - 1).next = start; // Link the one before moves to the next one.
 	}
 	
 	public void printList()
 	{
 		Node current = start;
-		while(current != null)
+		for (int i = 0; i < currentCount; i++)
 		{
 			System.out.println(current.value);
 			current = current.next;
 		}
 	}
-	public void add(E val)//O(N)
+	public void add(int val)//O(N)
 	{
 		Node newItem = new Node(val);
 
@@ -52,7 +63,7 @@ public class PotatoList<E> {
 			currentCount++;
 		}
 	}
-	public void insert(E val, int index)
+	public void insert(int val, int index)
 	{
 		if(index < 0)
 		{
@@ -113,7 +124,7 @@ public class PotatoList<E> {
 			currentCount--;
 		}
 	}
-	public PotatoList<E>.Node get(int index)//O(N)
+	public PotatoList<Integer>.Node get(int index)//O(N)
 	{
 		if(index >= 0 && index < currentCount)
 		{
@@ -133,9 +144,9 @@ public class PotatoList<E> {
 
 	class Node
 	{
-		E value;
+		int value;
 		Node next;
-		private Node(E v)
+		private Node(int v)
 		{
 			value = v;
 			next = null;//no node after this one
