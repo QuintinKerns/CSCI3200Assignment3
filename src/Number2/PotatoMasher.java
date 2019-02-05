@@ -1,10 +1,11 @@
+package Number2;
 
 
 import java.util.Scanner;
 
 import Number1.MySingleLinkedList;
 
-public class Number2 {
+public class PotatoMasher {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -12,19 +13,23 @@ public class Number2 {
 		int people = scan.nextInt();
 		System.out.println("How many moves?:");
 		int moves = scan.nextInt();
-		Number2 spud = new Number2(people, moves);
+		new PotatoMasher(people, moves);
 	}
 
-	Number2(int people, int moves){
+	PotatoMasher(int people, int moves){
 		PotatoList<Integer> playerList = new PotatoList<Integer>();
 		for (int i = 0; i < people; i++) {
 			playerList.add(i);
 		}
 		playerList.linkLast(); // Sets last.next to the first
 		
-		while(playerList.get(playerList.currentCount).next != null) {
+		int testCtr = 0;
+		while(playerList.get(1) != null) {
+			testCtr++;
+			System.out.println("Ctr: " + testCtr);
 			playerList.pass(moves);
 		}
+		System.out.println("List: ");
 		playerList.printList();
 	}
 	

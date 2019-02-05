@@ -1,3 +1,4 @@
+package Number2;
 
 public class PotatoList<E> {
 	private Node start;
@@ -16,6 +17,7 @@ public class PotatoList<E> {
 	
 	void pass(int moves) {
 		this.delete(moves);
+		start = this.get(moves);
 	}
 	
 	public void printList()
@@ -133,7 +135,7 @@ public class PotatoList<E> {
 	{
 		E value;
 		Node next;
-		public Node(E v)
+		private Node(E v)
 		{
 			value = v;
 			next = null;//no node after this one
