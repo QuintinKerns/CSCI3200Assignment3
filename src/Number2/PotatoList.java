@@ -19,6 +19,7 @@ public class PotatoList<Integer> {
 		this.get(moves - 1).next = this.get(moves);
 		this.linkLast();
 		start = this.get(moves); // Start at new moves index
+		System.out.println("Start: " + start.value);
 	}
 	
 	// Links last to first
@@ -38,7 +39,7 @@ public class PotatoList<Integer> {
 	
 	public String toString(){
 		String list = "";
-		if (currentCount == 1) return String.valueOf(start.value);
+		if (currentCount == 1) return ""+this.start.value;
 		for (int i = 0; i < currentCount; i++){
 			list += " " + this.get(i).value;
 		}
@@ -143,7 +144,7 @@ public class PotatoList<Integer> {
 		}
 		else
 		{
-			return null;
+			return start;
 		}
 	}
 
