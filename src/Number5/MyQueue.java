@@ -10,7 +10,7 @@ public class MyQueue<E> {
 	}
 	
 	public void enqueue(E item){
-		queue.add(item); // Adds item at 0
+		queue.add(0, item); // Adds item at 0
 		length++;
 	}
 	

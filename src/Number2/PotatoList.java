@@ -3,32 +3,21 @@ package Number2;
 public class PotatoList<Integer> {
 	private Node start;
 	int currentCount;
-	public PotatoList(int people, int moves)
+	public PotatoList(int people)
 	{
 		start = null;
 		currentCount = 0;
 		for (int i = 0; i < people; i++) {
 			this.add(i);
 		}
-		this.linkLast();
-		
-		// Game starts
-		for (int i = 0; i < people; i++){
-			this.pass(moves);
-		}
-		
-	}
-	
-	public void linkLast()
-	{
-		Node last = this.get(currentCount - 1);
-		last.next = start;
+		// Links last to first
+		this.get(currentCount - 1).next = start;
 	}
 	
 	void pass(int moves) {
 		this.delete(moves); // Delete at index moves
+		this.get(moves - 1).next = this.get(moves);
 		start = this.get(moves); // Start at new moves index
-		this.get(moves - 1).next = start; // Link the one before moves to the next one.
 	}
 	
 	public void printList()
@@ -40,6 +29,15 @@ public class PotatoList<Integer> {
 			current = current.next;
 		}
 	}
+	
+	public String toString(){
+		String list = "";
+		for (int i = 0; i < currentCount; i++){
+			list += " " + this.get(i).value;
+		}
+		return list;
+	}
+	
 	public void add(int val)//O(N)
 	{
 		Node newItem = new Node(val);

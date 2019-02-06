@@ -12,8 +12,16 @@ public class PotatoMasher {
 		int people = scan.nextInt();
 		System.out.println("How many moves?:");
 		int moves = scan.nextInt();
-		PotatoList spud = new PotatoList<Integer>(people, moves);
-		spud.printList();
+		scan.close();
+		
+		// Make circular list
+		PotatoList<Integer> spud = new PotatoList<Integer>(people);
+		
+		// Game starts
+		for (int i = 0; i < people; i++){
+			System.out.println("Turn " + i + ": " + spud.toString());
+			spud.pass(moves);
+		}
 	}
 	
 	
