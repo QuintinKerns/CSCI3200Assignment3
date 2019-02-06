@@ -14,16 +14,25 @@ public class PotatoMasher {
 		int moves = scan.nextInt();
 		scan.close();
 		
+		// Speeds up game by reducing moves to do
+		if (moves > people){
+			moves = moves - people;
+		}
+		
 		// Make circular list
 		PotatoList<Integer> spud = new PotatoList<Integer>(people);
 		
 		// Game starts
 		System.out.println("Start:  " + spud);
-		for (int i = 0; i < people; i++){
+		for (int i = 0; i < people - 1; i++){
 			spud.pass(moves);
 			System.out.println("Turn " + i + ": " + spud);
+			if (spud.currentCount == moves){
+				System.out.println("Winner!: " + spud.get(0).value);
+				break;
+			}
 		}
-		System.out.println("Winner!: " + spud);
+		
 	}
 	
 	
