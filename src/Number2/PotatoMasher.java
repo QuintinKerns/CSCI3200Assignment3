@@ -18,10 +18,12 @@ public class PotatoMasher {
 		PotatoList<Integer> spud = new PotatoList<Integer>(people);
 		
 		// Game starts
+		System.out.println("Start:  " + spud);
 		for (int i = 0; i < people; i++){
-			System.out.println("Turn " + i + ": " + spud.toString());
 			spud.pass(moves);
+			System.out.println("Turn " + i + ": " + spud);
 		}
+		System.out.println("Winner!: " + spud);
 	}
 	
 	

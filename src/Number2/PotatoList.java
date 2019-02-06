@@ -17,21 +17,28 @@ public class PotatoList<Integer> {
 	void pass(int moves) {
 		this.delete(moves); // Delete at index moves
 		this.get(moves - 1).next = this.get(moves);
+		this.linkLast();
 		start = this.get(moves); // Start at new moves index
+	}
+	
+	// Links last to first
+	private void linkLast(){
+		System.out.println("Current Count: " + currentCount);
+		if (currentCount == 1){
+			start.next = start;
+			return;
+		}
+		this.get(currentCount - 1).next = start;
 	}
 	
 	public void printList()
 	{
-		Node current = start;
-		for (int i = 0; i < currentCount; i++)
-		{
-			System.out.println(current.value);
-			current = current.next;
-		}
+		System.out.println(this.toString());
 	}
 	
 	public String toString(){
 		String list = "";
+		if (currentCount == 1) return String.valueOf(start.value);
 		for (int i = 0; i < currentCount; i++){
 			list += " " + this.get(i).value;
 		}
@@ -102,7 +109,7 @@ public class PotatoList<Integer> {
 	}
 	public void delete(int index)
 	{
-		if(index >= 0 && index < currentCount)
+		if(index >= 0 && index <= currentCount)
 		{
 			if(index==0)//deal with special case
 			{
@@ -124,7 +131,7 @@ public class PotatoList<Integer> {
 	}
 	public PotatoList<Integer>.Node get(int index)//O(N)
 	{
-		if(index >= 0 && index < currentCount)
+		if(index >= 0 && index <= currentCount)
 		{
 			Node current = start;
 			for(int i = 0; i < index; i++)
