@@ -17,16 +17,31 @@ public class MySingleLinkedList<E> {
         // Special Case: Index is greater than or equal to currentCount
         if (index >= currentCount) return;
         
+        // Special Case: 0 because 0th node has no previous node
+        if (index == 0){
+        	Node after = start.next;
+    		Node last = start.next.next;
+    		start.next = last;
+    		after.next = start;
+    		start = after;
+    		return;
+        }
+        
+        // Regular Case: Indices > 0
         // Cycle through to index
-        Node current = start;
-		for(int i = 0; i < index; i++)
+        Node prev = start, current, last; 
+		for(int i = 0; i < index - 2; i++)
 		{
-			current = current.next;
+			prev = prev.next;
 		}
-		Node after = current.next;
-		current.next = current.next.next;
-		after.next = current;
-		current.next = after.next.next;
+		// Set current and last values
+		current = prev.next;
+		last = current.next;
+		
+		// Swap values
+		current.next = last.next;
+		last.next = current;
+		prev.next = last;
 	}
 	
 	public void printList()
@@ -38,6 +53,7 @@ public class MySingleLinkedList<E> {
 			current = current.next;
 		}
 	}
+	
 	public void add(E val)//O(N)
 	{
 		Node newItem = new Node(val);
